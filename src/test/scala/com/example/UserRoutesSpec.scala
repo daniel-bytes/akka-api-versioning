@@ -11,12 +11,12 @@ import org.scalatest.{ Matchers, WordSpec }
 
 //#set-up
 class UserRoutesSpec extends WordSpec with Matchers with ScalaFutures with ScalatestRouteTest
-    with UserRoutes {
+  with UserRoutes {
   //#test-top
 
   // Here we need to implement all the abstract members of UserRoutes.
-  // We use the real UserRegistryActor to test it while we hit the Routes, 
-  // but we could "mock" it by implementing it in-place or by using a TestProbe() 
+  // We use the real UserRegistryActor to test it while we hit the Routes,
+  // but we could "mock" it by implementing it in-place or by using a TestProbe()
   override val userRegistryActor: ActorRef =
     system.actorOf(UserRegistryActor.props, "userRegistry")
 
@@ -44,7 +44,7 @@ class UserRoutesSpec extends WordSpec with Matchers with ScalaFutures with Scala
 
     //#testing-post
     "be able to add users (POST /users)" in {
-      val user = User("Kapi", 42, "jp")
+      val user = User("Kapi", 42, Some("jp"))
       val userEntity = Marshal(user).to[MessageEntity].futureValue // futureValue is from ScalaFutures
 
       // using the RequestBuilding DSL:

@@ -14,7 +14,7 @@ lazy val root = (project in file(".")).
       "com.typesafe.akka" %% "akka-http-xml"        % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-stream"          % akkaVersion,
 
-      "com.sksamuel.avro4s" %% "avro4s-core" % "3.0.0-RC2",
+      "io.scalaland" %% "chimney" % "0.3.1",
 
       "com.typesafe.akka" %% "akka-http-testkit"    % akkaHttpVersion % Test,
       "com.typesafe.akka" %% "akka-testkit"         % akkaVersion     % Test,
@@ -22,3 +22,6 @@ lazy val root = (project in file(".")).
       "org.scalatest"     %% "scalatest"            % "3.0.5"         % Test
     )
   )
+
+sourceGenerators in Compile += (avroScalaGenerate in Compile).taskValue
+avroSourceDirectories in Compile += (sourceDirectory in Compile).value

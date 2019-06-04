@@ -1,0 +1,8 @@
+@namespace("com.example.models.v2")
+protocol UsersV2 {
+  record User {
+    string name;
+    int age;
+    string countryOfResidence;
+  }
+}
